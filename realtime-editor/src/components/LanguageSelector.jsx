@@ -15,20 +15,19 @@ import {
   const LanguageSelector = ({ language, onSelect }) => {
     return (
       <Box ml={2} mb={4}>
-        <Text mb={2} fontSize="8xl"
+        <Text mb={6} fontSize="8xl"
         textColor="#ffffff"
-        fontFamily="fantasy"
-
+        fontWeight="bold"
         >
-          Language:
+          Language
         </Text>
         <Menu isLazy>
-          <MenuButton   _hover={{ bg: "#E2E5DE" }} 
-           border="1px solid" 
+          <MenuButton color={'#fff'} _hover={{ bg: "#fff", color: '#3A3A3B' }} 
+           border="1px solid" fontWeight="bold" 
           p={3}
 
 
-           as={Button}>{language}</MenuButton>
+           as={Button}>{language[0].toUpperCase()+language.slice(1, language.length)}</MenuButton>
           <MenuList 
           bg="#ffffff" zIndex={999}        border="3px solid"
           variant="solid"

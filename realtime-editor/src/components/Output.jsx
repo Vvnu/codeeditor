@@ -35,12 +35,13 @@ const Output = ({ editorRef, language }) => {
         Output
       </Text>
       <Button
+        color={'#fff'}
         variant="solid"
         colorScheme="yellow"
         mb={4}
         isLoading={isLoading}
         onClick={runCode}
-        _hover={{ bg: "#fff" }} // Change background color on hover
+        _hover={{ bg: "#fff", color: '#3A3A3B' }} // Change background color on hover
         _active={{ bg: "#" }} // Change background color on click
         _focus={{ outline: "none" }} // Remove focus outline
         border="1px solid"
