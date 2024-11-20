@@ -16,6 +16,7 @@ app.use(cors({
     methods: ['GET', 'POST']
 }));
 
+
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
@@ -31,7 +32,7 @@ io.on('connection', (socket) => {
     console.log('socket connected', socket.id);
 
     socket.on('joinroom', (data) => {
-        console.log(data);
+        // console.log(data);
         socket.join(data.roomId);
 
         // Store user data when they join the room
@@ -45,7 +46,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('send', (data) => {
-        console.log(data);
+        // console.log(data);
         io.to(data.roomId).emit('receive', data);
     });
 
