@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Home from './pages/Home';
 import EditorPage from './pages/EditorPage';
+import SaveHistoryPage from './pages/SaveHistoryPage';
 import { useState, useEffect } from "react";
 
 // Load data from localStorage
@@ -59,6 +60,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home roomId={roomId} setRoomId={setRoomId} username={username} setUsername={setUsername} avatar={avatar} />} />
           <Route path="/editor/:roomId" element={<EditorPage username={username} avatar={avatar} />} />
+          <Route path="/history/:roomId" element={<SaveHistoryPage />} />
         </Routes>
       </BrowserRouter>
     </>

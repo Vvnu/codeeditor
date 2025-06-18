@@ -86,6 +86,36 @@ io.on('connection', (socket) => {
         console.log('📤 Broadcasted code update to room', data.roomId);
     });
 
+    socket.on('leaveRoom', (data) => {
+        console.log('🚪 User manually leaving room:', { socketId: socket.id, ...data });
+        
+        const { username, roomId } = data;
+        const { roomId: storedRoomId } = users[socket.id] || {};
+        
+        // Use the roomId from the event data or stored data
+        const targetRoomId = roomId || storedRoomId;
+        
+        if (targetRoomId) {
+            // Remove user from the room
+            socket.leave(targetRoomId);
+            
+            // Remove user data
+            delete users[socket.id];
+            
+            // Get remaining users in the room
+            const roomUsers = Object.values(users).filter(user => user.roomId === targetRoomId);
+            console.log('👥 Remaining users in room', targetRoomId, ':', roomUsers);
+            
+            // Emit updated user list to all remaining clients in the room
+            io.to(targetRoomId).emit('userList', roomUsers);
+            console.log('📤 Updated userList after manual leave:', roomUsers);
+            
+            // Broadcast toast message to all remaining clients in the room
+            io.to(targetRoomId).emit('toast', `${username} left the room`);
+            console.log('🍞 Sent toast: "', username, 'left the room"');
+        }
+    });
+
     socket.on('disconnect', () => {
         // Get username and avatar of the disconnected user
         const { username, roomId } = users[socket.id] || {};

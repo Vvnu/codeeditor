@@ -44,15 +44,23 @@ const EditorPage = ({ username, avatar }) => {
     };
   }, [username, avatar, paramRoomId]);
 
-  // Add beforeunload event listener
+  // Cleanup effect when component unmounts
+  useEffect(() => {
+    return () => {
+      // This will run when the component unmounts (user navigates away)
+      if (username && paramRoomId) {
+        console.log('🚪 Component unmounting, cleaning up user:', username);
+        // The socket disconnect event will handle the cleanup automatically
+      }
+    };
+  }, [username, paramRoomId]);
+
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
-      event.returnValue = ''; // Chrome requires returnValue to be set
+      event.returnValue = '';
     };
-
     window.addEventListener('beforeunload', handleBeforeUnload);
-
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
@@ -69,8 +77,6 @@ const EditorPage = ({ username, avatar }) => {
     textArea.select();
     try {
       var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-      console.log('Fallback: Copying text command was ' + msg);
       if (successful) {
         toast.success('Room ID copied successfully', {
           duration: 3000,
@@ -83,7 +89,6 @@ const EditorPage = ({ username, avatar }) => {
         });
       }
     } catch (err) {
-      console.error('Fallback: Oops, unable to copy', err);
       toast.error('Failed to copy Room ID', {
         duration: 3000,
         position: 'top-right',
@@ -95,6 +100,16 @@ const EditorPage = ({ username, avatar }) => {
   const handleLeaveClick = () => {
     const confirmLeave = confirm("Do you want to leave?");
     if (confirmLeave) {
+      console.log('🚪 User manually leaving room:', paramRoomId);
+      
+      // Manually emit a leave event to notify other users
+      socket.emit('leaveRoom', { 
+        username, 
+        avatar, 
+        roomId: paramRoomId 
+      });
+      
+      // Navigate back to home
       navigate('/');
     }
   };
