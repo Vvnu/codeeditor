@@ -213,12 +213,22 @@ const CodeEditor = ({ roomId, username }) => {
     debounce((value) => {
       if (!isReceivingUpdate.current) {
         const data = { msg: value, roomId, username };
-        console.log('📤 Sending code update:', data);
+        console.log('📤 Sending code update after 5 second delay:', data);
         socket.emit("send", data);
+        
+        // Show a toast notification that code was synced
+        toast({
+          title: "Code Synced!",
+          description: "Your code has been shared with other users in the room",
+          status: "info",
+          duration: 2000,
+          isClosable: true,
+        });
       } else {
         console.log('⏸️ Skipping send - currently receiving update');
       }
-    }, 300), [roomId, username]
+    }, 5000), // Changed from 300ms to 5000ms (5 seconds)
+    [roomId, username, toast]
   );
 
   const onMount = (editor) => {
@@ -231,14 +241,14 @@ const CodeEditor = ({ roomId, username }) => {
     console.log('🔤 Language changed to:', selectedLanguage);
     setLanguage(selectedLanguage);
     setValue(CODE_SNIPPETS[selectedLanguage]);
-    // Send language change to other users
+    // Send language change to other users immediately (not debounced)
     const data = { 
       msg: CODE_SNIPPETS[selectedLanguage], 
       roomId, 
       username,
       language: selectedLanguage 
     };
-    console.log('📤 Sending language change:', data);
+    console.log('📤 Sending language change immediately:', data);
     socket.emit("send", data);
   };
 
@@ -248,7 +258,7 @@ const CodeEditor = ({ roomId, username }) => {
       initialLoad.current = false;
       return;
     }
-    console.log('📝 Value changed, triggering debounced send');
+    console.log('📝 Value changed, triggering 5-second delayed send');
     debouncedSend(value);
   }, [value, debouncedSend]);
 
@@ -256,7 +266,7 @@ const CodeEditor = ({ roomId, username }) => {
     console.log('🎧 Setting up receive listener for room:', roomId);
     
     socket.on("receive", (data) => {
-      console.log('📥 Received code update:', data);
+      console.log('📥 Received code update from another user:', data);
       isReceivingUpdate.current = true;
       setValue(data.msg);
       
