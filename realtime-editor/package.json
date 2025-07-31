@@ -61,6 +61,7 @@
     "react-hot-toast": "^2.4.1",
     "react-refresh": "^0.11.0",
     "react-router-dom": "^6.22.0",
+    "react-scripts": "^5.0.1",
     "realtime-editor": "^0.5.0",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
