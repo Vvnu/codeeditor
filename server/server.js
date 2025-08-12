@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
+const path = require('path');
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,6 +18,14 @@ app.use(cors({
     origin: frontendURL,
     methods: ['GET', 'POST']
 }));
+
+// Serve React frontend in production
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Handle all other routes with React's index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -144,7 +153,7 @@ io.on('connection', (socket) => {
 });
 
 server.listen(PORT, () => {
-    console.log(`🎉 Server listening on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
     console.log(`🌐 CORS enabled for origin: ${frontendURL}`);
     console.log(`🔗 Health check available at: http://localhost:${PORT}/health`);
 });
