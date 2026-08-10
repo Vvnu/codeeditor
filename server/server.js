@@ -19,13 +19,34 @@ app.use(cors({
     methods: ['GET', 'POST']
 }));
 
+
+
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Serve React frontend in production
 app.use(express.static(path.join(__dirname, 'build')));
 
 // Handle all other routes with React's index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
+
+
+// // Serve React frontend in production
+// app.use(express.static(path.join(__dirname, 'build')));
+
+// // Handle all other routes with React's index.html
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -38,10 +59,10 @@ const io = new Server(server, {
 // Object to store user data, including username and avatar
 const users = {};
 
-// Add a simple health check endpoint
-app.get('/health', (req, res) => {
-    res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
+// // Add a simple health check endpoint
+// app.get('/health', (req, res) => {
+//     res.json({ status: 'OK', timestamp: new Date().toISOString() });
+// });
 
 io.on('connection', (socket) => {
     console.log('✅ New socket connected:', socket.id);
