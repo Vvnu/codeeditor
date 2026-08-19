@@ -1,170 +1,1286 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
+/* ============================================================
+   GLOBAL
+============================================================ */
 
-.homePageWrapper{
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #030202;
-}
-.formWrapper{
-  background: #2b40b5;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  max-width: 90%;
-
+* {
+    box-sizing: border-box;
 }
 
-
-
-footer{
-  position: fixed;
-  bottom: 0;
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    background: #0d0d0f;
+    color: #f5f5f7;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
 
-footer a{
- color: #06f66280; 
+    overflow: hidden;
 }
 
+/* ============================================================
+   HOME PAGE
+============================================================ */
 
-.inputGroup{
-  display: flex;
-  flex-direction: column;
+.homePageWrapper {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(
+            circle at top,
+            #24212b 0%,
+            #111113 55%,
+            #0b0b0d 100%
+        );
+    color: #ffffff;
 }
 
-.mainLabel{
-  margin-bottom: 5%;
-  margin-top: 0;
+.formWrapper {
+    background: #1b1b1f;
+    padding: 30px;
+    border: 1px solid #303036;
+    border-radius: 16px;
+    width: 420px;
+    max-width: 90%;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
 }
 
-.homePageLogo{
-  height: 90px;
-  margin-bottom: 30px;
+footer {
+    position: fixed;
+    bottom: 0;
 }
 
-.inputBox{
-  padding: 10px;
-  border-radius: 5px;
-  outline:none;
- border: none;
- margin-bottom: 14px;
- background: #eee; 
- font-size: 16px;
- font-weight: bold;
+footer a {
+    color: #6ee7b7;
 }
 
-.btn{
-  border:none;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor:pointer;
-  transition: all 0.3s ease-in-out;
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.mainLabel {
+    margin-bottom: 5%;
+    margin-top: 0;
+}
+
+.homePageLogo {
+    height: 90px;
+    margin-bottom: 30px;
+}
+
+.inputBox {
+    padding: 12px 14px;
+    border-radius: 8px;
+    outline: none;
+    border: 1px solid #3a3a42;
+    margin-bottom: 14px;
+    background: #111113;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.inputBox:focus {
+    border-color: #8b5cf6;
+}
+
+.btn {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.joinBtn,
+.leaveBtn {
+    background: #69df14;
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.joinBtn:hover,
+.leaveBtn:hover {
+    background: #8bea43;
+}
+
+.craeteInfo {
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.createNewBtn {
+    color: #6ee7b7;
+    text-decoration: none;
+    border-bottom: 1px solid #6ee7b7;
+}
+
+.createNewBtn:hover {
+    color: #a7f3d0;
+}
+
+/* ============================================================
+   EDITOR PAGE
+============================================================ */
+
+.editorPage {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 250px minmax(0, 1fr);
+
+    background: #0d0d0f;
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   LEFT PEOPLE SIDEBAR
+============================================================ */
+
+.peopleSidebar {
+    height: 100vh;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #151518;
+
+    border-right: 1px solid #2b2b31;
+
+    color: #ffffff;
+
+    overflow: hidden;
+}
+
+/* Sidebar header */
+
+.sidebarHeader {
+    height: 62px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #2b2b31;
+
+    background: #17171a;
+}
+
+.peopleTitle {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    color: #d6d6dc;
+}
+
+.peopleIcon {
+    font-size: 15px;
+}
+
+/* ============================================================
+   MAC TRAFFIC LIGHTS
+============================================================ */
+
+.trafficLights {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.traffic {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    display: block;
+}
+
+.traffic.red {
+    background: #ff5f57;
+}
+
+.traffic.yellow {
+    background: #febc2e;
+}
+
+.traffic.green {
+    background: #28c840;
+}
+
+/* ============================================================
+   SIDEBAR SECTIONS
+============================================================ */
+
+.sidebarSection {
+    padding: 20px 16px 0;
+}
+
+.sidebarSectionTitle {
+    margin-bottom: 10px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+    color: #73737d;
+}
+
+.roomBox {
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 10px;
+
+    background: #1c1c20;
+
+    border: 1px solid #35353c;
+
+    border-radius: 8px;
+}
+
+.roomText {
+    font-family:
+        "JetBrains Mono",
+        "Fira Code",
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+
+    color: #c9c9d1;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.roomCopyButton {
+    border: none;
+    background: transparent;
+
+    color: #858591;
+
+    cursor: pointer;
+
+    font-size: 17px;
+
+    padding: 2px 4px;
+}
+
+.roomCopyButton:hover {
+    color: #ffffff;
+}
+
+/* ============================================================
+   COLLABORATORS
+============================================================ */
+
+.collaboratorsSection {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.collaboratorsTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.15em;
+
+    color: #73737d;
+}
+
+.countBadge {
+    min-width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #29292f;
+
+    border-radius: 6px;
+
+    color: #d5d5dc;
+
+    font-size: 11px;
+
+    letter-spacing: normal;
+}
+
+.clientsLists {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    overflow-y: auto;
+
+    max-height: calc(100% - 40px);
+}
+
+.clientRow {
+    min-height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 6px 8px;
+
+    border-radius: 8px;
+
+    transition:
+        background 0.15s ease;
+}
+
+.clientRow:hover {
+    background: #202024;
+}
+
+.clientAvatarWrapper {
+    width: 34px;
+    height: 34px;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.clientAvatar {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 1px solid #3b3b43;
+}
+
+.clientAvatarFallback {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.onlineDot {
+    position: absolute;
+
+    right: -1px;
+    bottom: 0;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    border: 2px solid #151518;
+
+    z-index: 2;
+}
+
+.clientInfo {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.clientName {
+    max-width: 125px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #dedee4;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.youBadge {
+    padding: 2px 5px;
+
+    border-radius: 4px;
+
+    background: #292930;
+
+    color: #8f8f9a;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+.emptyCollaborators {
+    padding: 12px 4px;
+
+    color: #64646d;
+
+    font-size: 12px;
+}
+
+/* ============================================================
+   SIDEBAR BOTTOM
+============================================================ */
+
+.sidebarBottom {
+    flex-shrink: 0;
+
+    padding: 14px 16px 16px;
+
+    border-top: 1px solid #2b2b31;
+
+    background: #151518;
+}
+
+.connectionStatus {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 12px;
+
+    color: #9c9ca5;
+
+    font-size: 12px;
+}
+
+.statusDot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.sidebarButton,
+.sidebarLeaveButton {
+    width: 100%;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.sidebarButton {
+    margin-bottom: 8px;
+
+    background: #202024;
+
+    border: 1px solid #36363e;
+
+    color: #d6d6dd;
+}
+
+.sidebarButton:hover {
+    background: #29292f;
+    border-color: #4a4a54;
+}
+
+.sidebarLeaveButton {
+    background: rgba(239, 68, 68, 0.06);
+
+    border: 1px solid rgba(239, 68, 68, 0.22);
+
+    color: #f87171;
+}
+
+.sidebarLeaveButton:hover {
+    background: rgba(239, 68, 68, 0.12);
+
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* ============================================================
+   MAIN EDITOR AREA
+============================================================ */
+
+.editorMain {
+    width: 100%;
+    height: 100vh;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #0d0d0f;
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   MAIN HEADER
+============================================================ */
+
+.mainHeader {
+    height: 62px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    background: #151518;
+
+    border-bottom: 1px solid #2b2b31;
+}
+
+.mainHeaderLeft {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+.headerBrand {
+    font-size: 16px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
+
+    color: #f4f4f5;
+}
+
+.headerRoom {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #6f6f79;
+
+    font-family:
+        "JetBrains Mono",
+        Consolas,
+        monospace;
+
+    font-size: 11px;
+}
+
+.headerStatusDot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.shareButton {
+    height: 34px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    border: 1px solid #36363e;
+
+    background: #1c1c20;
+
+    color: #d9d9df;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.shareButton:hover {
+    background: #29292f;
+
+    border-color: #50505a;
+}
+
+/* ============================================================
+   CODE EDITOR CONTAINER
+============================================================ */
+
+.codeEditorContainer {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   CODE EDITOR ROOT
+============================================================ */
+
+.codeEditorRoot {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #101012;
+}
+
+/* ============================================================
+   EDITOR TOOLBAR
+============================================================ */
+
+.editorToolbar {
+    height: 64px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 0 16px;
+
+    background: #111113;
+
+    border-bottom: 1px solid #29292f;
+}
+
+.toolbarLeft {
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+
+    min-width: 0;
+}
+
+.brand {
+    font-size: 18px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
+
+    color: #f4f4f5;
+}
+
+.languageWrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+}
+
+.toolbarLabel {
+    margin: 0;
+
+    color: #787881;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.toolbarActions {
+    flex-shrink: 0;
+}
+
+.macActionButton {
+    height: 34px !important;
+
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+
+    border-radius: 8px !important;
+
+    background: #202024 !important;
+
+    border: 1px solid #38383f !important;
+
+    color: #ddddE3 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    box-shadow: none !important;
+
+    transition:
+        background 0.15s ease,
+        border 0.15s ease,
+        transform 0.1s ease !important;
+}
+
+.macActionButton:hover {
+    background: #2b2b31 !important;
+
+    border-color: #4b4b55 !important;
+}
+
+.macActionButton:active {
+    transform: scale(0.97);
+}
+
+.runButton {
+    background: #22c55e !important;
+
+    border-color: #22c55e !important;
+
+    color: #ffffff !important;
+}
+
+.runButton:hover {
+    background: #16a34a !important;
+
+    border-color: #16a34a !important;
+}
+
+.buttonIcon {
+    margin-right: 5px;
+}
+
+/* ============================================================
+   WORKSPACE
+============================================================ */
+
+.workspace {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    /*
+       IMPORTANT:
+       Editor gets more space.
+       Terminal remains large enough to be useful.
+    */
+
+    grid-template-columns:
+        minmax(0, 1.35fr)
+        minmax(340px, 0.65fr);
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   EDITOR PANEL
+============================================================ */
+
+.editorPanel {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #1e1e1e;
+
+    border-right: 1px solid #303038;
+
+    overflow: hidden;
+}
+
+.panelHeader {
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    background: #151518;
+
+    border-bottom: 1px solid #29292f;
+
+    color: #858590;
+}
+
+.panelHeaderLeft {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.panelTitle {
+    margin: 0;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    color: #a5a5af;
+}
+
+.fileName {
+    margin: 0;
+
+    color: #62626d;
+
+    font-family:
+        "JetBrains Mono",
+        Consolas,
+        monospace;
+
+    font-size: 10px;
+}
+
+.monacoWrapper {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   TERMINAL
+============================================================ */
+
+.terminalPanel {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #0c0c0f;
+
+    overflow: hidden;
+}
+
+.terminalPanelHeader {
+    background: #111113;
+}
+
+.terminalDot {
+    margin: 0;
+
+    color: #22c55e;
+
+    font-size: 12px;
+
+    text-shadow:
+        0 0 8px rgba(34, 197, 94, 0.7);
+}
+
+.terminalLanguage {
+    margin: 0;
+
+    color: #575761;
+
+    font-family:
+        "JetBrains Mono",
+        Consolas,
+        monospace;
+
+    font-size: 10px;
+}
+
+.terminalContent {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+/* ============================================================
+   OUTPUT COMPONENT
+============================================================ */
+
+.terminalOutput {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    position: relative;
+
+    background: #0b0b0e;
+}
+
+.hiddenRunButton {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+.terminalScreen {
+    width: 100%;
+    height: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    padding: 18px;
+
+    overflow: auto;
+
+    background:
+        linear-gradient(
+            rgba(255, 255, 255, 0.012) 1px,
+            transparent 1px
+        );
+
+    background-size: 100% 24px;
+
+    color: #c8c8cf;
+
+    font-family:
+        "JetBrains Mono",
+        "Fira Code",
+        Consolas,
+        monospace;
+
+    font-size: 13px;
+}
+
+.terminalError {
+    color: #f87171;
+}
+
+.terminalWelcome {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+.terminalPrompt {
+    margin: 0;
+
+    color: #22c55e;
+
+    font-weight: 700;
+}
+
+.terminalHint {
+    margin: 0;
+
+    color: #686872;
+
+    line-height: 1.5;
+}
+
+.terminalCommand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+
+    color: #777781;
+}
+
+.terminalOutputText {
+    width: 100%;
+}
+
+.outputText {
+    margin: 0;
+
+    color: #e1e1e6;
+
+    font-family:
+        "JetBrains Mono",
+        "Fira Code",
+        Consolas,
+        monospace;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   STATUS BAR
+============================================================ */
+
+.editorStatusBar {
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    background: #17171a;
+
+    border-top: 1px solid #29292f;
+
+    color: #71717b;
+
+    font-family:
+        "JetBrains Mono",
+        Consolas,
+        monospace;
+
+    font-size: 10px;
+}
+
+.statusLeft,
+.statusRight {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.statusLeft .connectionStatus {
+    margin: 0;
+}
+
+.statusSeparator {
+    color: #3e3e46;
+}
+
+.statusRight {
+    color: #666671;
+}
+
+.statusRight span:first-child {
+    color: #22c55e;
+}
+
+/* ============================================================
+   SCROLLBARS
+============================================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111113;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #35353c;
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4b4b55;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 1100px) {
+
+    .editorPage {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    .workspace {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(300px, 0.65fr);
+    }
+
+    .macActionButton {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+    }
 
 }
 
-.joinBtn,.leaveBtn{
-  background : #69df14;
-  width : 100px;
-  margin-left: 35%;
+@media (max-width: 850px) {
 
+    .peopleSidebar {
+        width: 190px;
+    }
 
-  
-}
-.joinBtn:hover,.leaveBtn:hover{
-  background: rgb(135, 228, 135);
-}
+    .editorPage {
+        grid-template-columns:
+            190px
+            minmax(0, 1fr);
+    }
 
-
-.craeteInfo{
-  margin:0 auto;
-  margin-top: 20px;
-}
-
-.createNewBtn{
-  color: #6ffd09;
-  text-decoration: none;
-  border-bottom: 1px solid #69df14;
-  transition: all 0.3s ease-in-out;
-}
-
-.creteNewBtn:hover, footer a :hover{
-  color:#368654;
-  border-color: #368654;
-}
-
-.mainWrap{
-  display: grid;
-  grid-template-columns: 230px 1fr;
-  height: 100vh;
-}
-
- .aside{
-  background: transparent;
-  padding: 16px;
-  color: #fff;
-  display: flex; 
-  flex-direction: column;
-}
-
-.asideInner{
-  flex: 1;
-  
-
-} 
-
-.clientsLists{
-  display:flex;
-  align-items: center; 
-   flex-wrap: wrap; 
-   gap: 20px;
-}
-
-
-.client {
-  display: flex;
-  align-items: center;
-  text-align:left;
-  flex-direction:column;
-  font-weight: bold;
-
-} 
-.userName{
-  margin-top: 10px;
+    .workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(0, 1fr) 300px;
+    }
 
 }
 
-.logo{
-  border-bottom: 1px solid #424242;
-  padding-bottom: 10px;
+@media (max-width: 650px) {
+
+    .editorPage {
+        grid-template-columns: 1fr;
+    }
+
+    .peopleSidebar {
+        display: none;
+    }
+
+    .toolbarLabel {
+        display: none;
+    }
+
+    .toolbarActions {
+        gap: 4px;
+    }
+
+    .macActionButton {
+        font-size: 11px !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .macActionButton .buttonIcon {
+        margin-right: 2px;
+    }
+
+    .editorToolbar {
+        padding: 0 8px;
+    }
+
+    .toolbarLeft {
+        gap: 10px;
+    }
+
 }
-.logoImage{
-  height: 80px;
-  /* width: 100px; */
-}
-
-.leaveBtn{
-   
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  margin-top: 10px;
-margin-left: 25%;
-}
-.editorSetup{
-  height: 100%;
-  width: 100%;
- 
-}
-
-
-
-
-
-
