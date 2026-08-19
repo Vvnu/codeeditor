@@ -2,6 +2,9 @@
   "name": "realtime-editor",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+  "node": "20.x"
+},
   "dependencies": {
     "@babel/runtime": "7",
     "@chakra-ui/icons": "^2.2.4",
@@ -63,11 +66,10 @@
     "react-refresh": "^0.11.0",
     "react-router-dom": "^6.22.0",
     "react-scripts": "^5.0.1",
-    "realtime-editor": "^0.5.0",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
-    "schema-utils": "^2.7.1",
+    "schema-utils": "^4.3.2",
     "semver": "^7.3.5",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
